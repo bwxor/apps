@@ -19,6 +19,8 @@ RUN npm run build
 # Use the official NGINX image for production
 FROM nginx:stable-alpine as production
 
+RUN sed -i 's/user  nginx;/user  root;/' /etc/nginx/nginx.conf
+
 # copy nginx configuration in side conf.d folder
 COPY --from=build /usr/src/app/frontend/nginx /etc/nginx/conf.d
 
@@ -26,7 +28,8 @@ COPY --from=build /usr/src/app/frontend/nginx /etc/nginx/conf.d
 COPY --from=build /usr/src/app/frontend/dist /usr/share/nginx/html
 
 # Permissions to assets
-RUN chmod -R 755 /usr/share/nginx/html
+RUN chown -R root:root /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html
 
 # Expose port 80 to allow access to the app
 EXPOSE 80
