@@ -57,6 +57,8 @@ function Spy() {
     }
 
     const handleRevealCard = () => {
+        console.log("handled");
+
         const audio = new Audio(click);
         audio.play();
 
@@ -65,6 +67,8 @@ function Spy() {
         } else {
             setRevealedWord(selectedWord);
         }
+
+        console.log("Word: " + revealedWord);
 
         setRevealed(true);
     }
@@ -143,9 +147,9 @@ function Spy() {
                                                     <h2>Player {currPlayerIndex}</h2>
                                                 </div>
                                                 <div className="spy-player-card-item">
-                                                    <div className="spy-word">
-                                                        <span className={revealedWord == "Spy" ? "spy-red" : ""}>{revealedWord}</span>
-                                                    </div>
+                                                    <span className={"spy-word" + (revealedWord == "Spy" ? " spy-red" : "")}>
+                                                        {revealedWord}
+                                                    </span>
                                                 </div>
                                                 <div className="spy-player-card-item">
                                                     <button className="spy-button button-full-width "

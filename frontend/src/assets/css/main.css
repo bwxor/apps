@@ -5,3 +5,8 @@ html, body {
     display: flex;
     flex-direction: column;
 }
+
+@font-face {
+    font-family: Roboto;
+    src: url("../fonts/Roboto-VariableFont_wdth,wght.ttf");
+}
